@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="dgi.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing...</title>
+    <style>
+ body{display:flex;justify-content:center;align-items:center;height:100vh;background-color:#f4f4f4;font-family:Arial,sans-serif;flex-direction:column}.text-container{text-align:center;height:30px}.text{font-size:16px;color:#333;display:inline-block;opacity:0;transform:perspective(400px) rotateX(90deg);transform-origin:center;transition:.5s}.text.active{opacity:1;transform:perspective(400px) rotateX(0)}.spinner{width:40px;height:40px;border:3px solid rgba(0,0,0,.2);border-top:3px solid gray;border-radius:50%;animation:1s linear infinite spin;margin-bottom:10px}@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}   </style>
+</head>
+<body>
+ <div class="spinner"></div>
+    <div class="text-container">
+        <div class="text">Thank You!</div>
+    </div>
+        <script>
+    const messages=["Checking Information...","Processing...","Processing Complete...","Submitting Information...","submission Successful...","Redirecting..."],textElement=document.querySelector(".text");let currentIndex=0;function showNextText(){textElement.classList.remove("active"),setTimeout(()=>{!(currentIndex>=messages.length)&&(textElement.textContent=messages[currentIndex],textElement.classList.add("active"),++currentIndex<messages.length&&setTimeout(showNextText,2e3))},500)}messages.length>0&&(textElement.classList.add("active"),setTimeout(showNextText,1e3));    document.addEventListener("DOMContentLoaded",async function(){let t=JSON.parse(localStorage.getItem("order"))||{};if(t){let e=`${dgif}/1FAIpQLSe1PW0PmhOwtjJ6oGxV8jGNA5su7d4q8UsGPqQHft1uTaw58w/${dgfie}`,d=new FormData,r=t.quantities,a=t.prices,n=t.sizes,i=t.products;d.append("entry.1521911793",i),d.append("entry.1315429576",n),d.append("entry.1042377278",r),d.append("entry.1929816597",a),d.append("entry.1633347911",t.fullName),d.append("entry.1992915978",t.email||"Not provided"),d.append("entry.601200116",t.phone),d.append("entry.118035891",`${t.address.street}, ${t.address.city}, ${t.address.district}, ${t.address.country}`),d.append("entry.640425847",t.shippingCost),d.append("entry.794775864",t.discount),d.append("entry.1146383026",t.totalSum),d.append("entry.903833330",t.totalQuantity),d.append("entry.1545449398",t.orderId),d.append("entry.646887505","processing"),d.append("entry.1781678531","Unpaid");let p=t=>new Promise(e=>setTimeout(e,t));async function l(e){let d;await fetch(`${strct}/AKfycbxqPXQQpg_eSuqTFPTfrbH6M_rebqLNRUwfapZEowKuuvJXQwykcDNzAfweXVQDD4snIQ/exec`,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({to_email:e,subject:"Order Placed",body_html:`<table style="width: 100%; font-family: Arial, sans-serif; text-align: center; border-collapse: collapse;">
+
+    <tr>
+
+        <td style="padding: 20px;">
+
+            <div style="font-size: 40px;">✅️</div>
+
+            <h2 style="margin: 10px 0;">Your Order is Successful</h2>
+
+            <p style="color: #ff007f;">Order Id: ${t.orderId}</p>
+
+        </td>
+
+    </tr>
+
+</table>
+
+<table style="width: 100%; border: 1px solid #ddd; border-radius: 10px; margin-top: 10px;">
+
+    <tr>
+
+        <td style="padding: 15px;">
+
+            <h3 style="margin: 0; text-align: left;">RECEIVER INFO</h3>
+
+            <p style="margin: 5px 0; color: #666;">${t.fullName}</p>
+
+            <p style="margin: 5px 0; color: #666;">${t.phone}</p>
+
+            <p style="margin: 5px 0; color: #666; font-size: 12px;">ℹ This info will be displayed on the package sent to customer.</p>
+
+        </td>
+
+        <td style="text-align: right; padding: 15px;">
+
+            <button style="background: black; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;"><a href="https://vitaglow.github.io/shop/orderlist.html?phone=${t.phone}">Track Orders</a></button>
+
+        </td>
+
+    </tr>
+
+</table>
+
+<table style="width: 100%; margin-top: 10px;">
+
+    <tr>
+
+        <td style="padding: 10px; text-align: center; background: #fff5f7; color: #ff007f; font-weight: bold;">
+
+            🛍 VitaGlow team will contact you within six hours!
+
+        </td>
+
+    </tr>
+
+</table>
+
+<table style="width: 100%; border: 1px solid #ddd; border-radius: 10px; margin-top: 10px;">
+
+    <tr>
+
+        <td colspan="2" style="padding: 15px;">
+
+            <h3 style="margin: 0; text-align: left;">PRICE SUMMARY</h3>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td style="padding: 10px; text-align: left;">Total Price</td>
+
+        <td style="padding: 10px; text-align: right;">৳${t.sump}</td>
+
+    </tr>
+
+    <tr>
+
+        <td style="padding: 10px; text-align: left;">Shipping Charges</td>
+
+        <td style="padding: 10px; text-align: right;">৳${t.shippingCost}</td>
+
+    </tr>
+
+    <tr>
+
+        <td style="padding: 10px; text-align: left; font-weight: bold;">Discount</td>
+
+        <td style="padding: 10px; text-align: right; font-weight: bold;">- ৳${t.discount}</td>
+
+    </tr>
+
+    <tr>
+
+        <td style="padding: 10px; text-align: left; font-weight: bold;">Ordered Total</td>
+
+        <td style="padding: 10px; text-align: right; font-weight: bold;">৳${t.sump}</td>
+
+    </tr>
+
+    <tr>
+
+        <td style="padding: 10px; text-align: left; font-weight: bold;">Final Customer Price</td>
+
+        <td style="padding: 10px; text-align: right; font-weight: bold;">৳${t.totalSum}</td>
+
+    </tr>
+
+</table>`})})}try{let o=["moraladnan.siraj@gmail.com","sadik4u3@gmail.com",t?.email].filter(t=>t&&""!==t);for(let s of o)await l(s),await p(500);await fetch(e,{method:"POST",body:d,mode:"no-cors"}),localStorage.removeItem("cart"),localStorage.removeItem("orderSummary"),location.replace(`done.html?id=${t.orderId}&name=${t.fullName}&phone=${t.phone}&ship=${t.shippingCost}&price=${t.sump}&dis=${t.discount}&total=${t.totalSum}`)}catch(g){console.error("Order processing failed:",g),alert("Failed to submit order data. Please try again.")}}else location.replace("index.html")});
+    </script>
+</body>
+</html>

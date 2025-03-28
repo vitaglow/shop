@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaGlow</title>
+   <script src="dgi.js"></script> <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/duotone-thin.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/duotone-regular.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/duotone-light.css">
+</head>
+<body>
+    <header><div style="background-color: #c6f7d6;"class="no-connection-popup" id="no-connection-popup3">
+        <div class="icon"><i  style="color:green"class="fa-duotone fa-solid fa-badge-check"></i></div>
+        <h1>Successful!</h1>
+    </div>
+
+        <div class="icon truck-icon">
+            <i id="tracking" class="fa-duotone fa-regular fa-truck"></i>
+        </div>
+        <h2>VitaGlow</h2>
+        <div class="cart-icon">
+            <i class="fa-duotone fa-regular fa-shopping-bag"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </header>
+
+    <main id="product-container">
+        <div class="loading-screen" id="loadingScreen">
+            <div class="loader"></div>
+        </div>
+
+    </main>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <div class="top-icons">
+                <button class="back-button"><</button>
+                <button class="favorite-button">♡</button>
+            </div>
+            <div class="product-image">
+                <img src="" alt="Product">
+            </div>
+            <div class="product-info">
+                <div class="product-title-price"></div>
+                <p class="unisex-label"></p>
+            </div>
+            <div class="product-details">
+                <h2>Description</h2>
+            </div>
+            <div class="size-quantity">
+                <div class="size-selection"></div>
+                <div class="quantity-selection">
+                    <button class="quantity-btn">-</button>
+                    <span class="quantity">01</span>
+                    <button class="quantity-btn">+</button>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="buy-now">Buy Now</button> <!-- Removed inline onclick -->
+                <button class="add-to-bag">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>For any query Contact +8801844291901</p>
+        <p>Copyright © 2024-2025 | VitaGlow Bangladesh</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded",async function(){let e=[],t=JSON.parse(localStorage.getItem("cart"))||[],i=JSON.parse(localStorage.getItem("favorites"))||[];async function n(){try{let t=await fetch(`${dgistart}/1FjHzDs4LSpAoMLfO3NvMirLL5bogN2bgfbsCstZ6BWA/gviz/tq?tqx=out:csv`).then(e=>e.text()),n=function e(t){let i=[],n=t.trim().split("\n");for(let s of n){let a=[],r="",c=!1;for(let o=0;o<s.length;o++){let l=s[o];'"'===l&&(0===o||"\\"!==s[o-1])?c=!c:","!==l||c?r+=l:(a.push(r.replace(/""/g,'"').trim()),r="")}a.push(r.replace(/""/g,'"').trim()),i.push(a)}return i}(t);n.shift(),(e=n.slice(2).map((e,t)=>({image:e[8]||"",description:e[9]||"",name:e[2]||"",code:e[1]||"",size:e[3]||"",stock:parseInt(e[4])||0,price:parseFloat(e[6])||0,unisex:e[10]||"Unisex",originalIndex:t+2}))).sort((e,t)=>0===e.stock&&0!==t.stock?1:0!==e.stock&&0===t.stock?-1:e.originalIndex-t.originalIndex);let a=document.getElementById("product-container");a.innerHTML="",e.forEach((e,t)=>{let i=`${e.size}`,n="";0===e.stock?(i="Out of Stock",n="out-of-stock"):e.stock<2&&(i="Low Stock",n="low-stock");let s=`
+                    <div class="product ${n}" data-index="${t}" style="animation-delay: ${0.1*t}s">
+                        <div class="image-wrapper">
+                            <img src="${e.image}" alt="${e.name}">
+                            <span class="brand-name">${e.unisex}</span>
+                        </div>
+                        <h2>${e.name}</h2>
+                        <p class="stars">${i}</p>
+                        <p class="price">${0===e.price?"Free":`৳${e.price.toFixed(2)}`}</p>
+                    </div>
+                `;a.innerHTML+=s}),document.querySelectorAll(".product").forEach(t=>{let n=parseInt(t.dataset.index);e[n].stock>0&&t.addEventListener("click",function(){let t=document.getElementById("popup"),a=document.querySelector(".product-image img"),r=document.querySelector(".product-title-price"),c=document.querySelector(".product-details"),o=document.querySelector(".size-selection"),l=document.querySelector(".quantity"),d=document.querySelector(".favorite-button"),u=document.querySelector(".unisex-label"),p=e[n];a.src=p.image,r.innerHTML=`<h2>${p.name}</h2><p class="price">৳${p.price.toFixed(2)}</p>`,c.innerHTML=`<h2>Description</h2><p>${p.description}</p>`,u.textContent=p.unisex;let f=p.size.split(",").map(e=>e.trim());o.innerHTML=f.map(e=>`<button class="size-btn">${e}</button>`).join("");let y=document.querySelectorAll(".size-btn");y.forEach(e=>{e.addEventListener("click",function(){y.forEach(e=>e.classList.remove("selected")),this.classList.add("selected")})}),y[0].classList.add("selected");let m=1;l.textContent=m.toString().padStart(2,"0");let g=document.querySelector(".quantity-btn:first-child"),h=document.querySelector(".quantity-btn:last-child");g.innerHTML='<i class="fas fa-minus"></i>',h.innerHTML='<i class="fas fa-plus"></i>',g.onclick=()=>{m>1&&(m--,l.textContent=m.toString().padStart(2,"0"))},h.onclick=()=>{m<p.stock&&(m++,l.textContent=m.toString().padStart(2,"0"))},d.innerHTML=i.includes(p.code)?'<i class="fas fa-heart"></i>':'<i class="far fa-heart"></i>',d.onclick=()=>{let e=i.indexOf(p.code);-1===e?(i.push(p.code),d.innerHTML='<i class="fas fa-heart"></i>'):(i.splice(e,1),d.innerHTML='<i class="far fa-heart"></i>'),localStorage.setItem("favorites",JSON.stringify(i))},document.querySelector(".add-to-bag").onclick=()=>{s(p,m);let e=document.getElementById("no-connection-popup3");e.classList.add("visible"),document.querySelector(".cart-icon").classList.add("cart-shaking"),setTimeout(()=>{e.classList.remove("visible"),document.querySelector(".cart-icon").classList.remove("cart-shaking")},1500),t.style.animation="fadeOut 0.1s ease-in-out forwards",setTimeout(()=>t.style.display="none",100)},document.querySelector(".buy-now").onclick=()=>{s(p,m),t.style.animation="fadeOut 0.1s ease-in-out forwards",setTimeout(()=>{t.style.display="none",window.location.href="cart.html"},100)},t.style.display="flex",t.style.animation="fadeIn 0.1s ease-in-out forwards"})})}catch(r){console.error("Error fetching or processing CSV:",r)}}function s(e,i){let n=document.querySelector(".size-btn.selected").textContent,s=parseFloat(e.price.toFixed(2)),r={name:e.name,price:s,code:e.code,size:n,quantity:i,image:e.image,unisex:e.unisex,max:e.stock,originalIndex:e.originalIndex},c=t.findIndex(e=>e.name===r.name&&e.size===r.size);-1!==c?t[c].quantity+=i:t.push(r),localStorage.setItem("cart",JSON.stringify(t)),a()}function a(){let e=document.querySelector(".cart-count"),i=t.reduce((e,t)=>e+t.quantity,0);e.textContent=i}let r=document.querySelector(".back-button");r.innerHTML='<i class="fas fa-arrow-left"></i>',r.addEventListener("click",function(){popup.style.animation="fadeOut 0.1s ease-in-out forwards",setTimeout(()=>popup.style.display="none",100)});let c=document.querySelector(".truck-icon");c.addEventListener("click",()=>{c.classList.add("truck-moving"),setTimeout(()=>window.location.href="orderlist.html",100)});let o=document.querySelector(".cart-icon");o.addEventListener("click",()=>{o.classList.add("cart-shaking"),setTimeout(()=>{o.classList.remove("cart-shaking"),location.replace("cart.html")},200)}),await n(),a()});
+    </script></body>
+</html>
