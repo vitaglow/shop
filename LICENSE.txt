@@ -1,0 +1,5 @@
+Copyright © 2024-2025 VitaGlow Bangladesh. All Rights Reserved.
+
+All materials contained within this repository, including but not limited to source code, designs, textual content, images, and associated documentation, are the exclusive intellectual property of VitaGlow Bangladesh. No individual or entity may copy, modify, distribute, reproduce, or utilize any portion of this work, in whole or in part, without obtaining prior written consent from VitaGlow Bangladesh. Any unauthorized use, reproduction, or distribution of these materials is expressly prohibited and may be subject to legal enforcement under applicable copyright laws.
+
+For permissions or inquiries, please contact VitaGlow Bangladesh at vitaglowbd@gmail.com
