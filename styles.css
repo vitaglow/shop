@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Serif+Bengali:wght@100..900&display=swap');
-html{scroll-behavior:smooth}.popup-content,.size-btn,header{box-sizing:border-box}body,footer p{text-align:center}.whatsapp-button {
+html{scroll-behavior:smooth}@media (min-width: 720px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem; /* adjust as needed */
+  }
+}.popup-content,.size-btn,header{box-sizing:border-box}body,footer p{text-align:center}.whatsapp-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
