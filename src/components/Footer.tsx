@@ -1,11 +1,12 @@
 import React from 'react';
+import logoImage from '../assets/vitaglow.jpg';
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-700 text-white text-center py-5">
       <div className="flex flex-col items-center justify-center">
         <img 
-          src="/vitaglow.jpg" 
+          src={logoImage} 
           alt="VitaGlow" 
           className="w-12 h-12 rounded-md mb-3"
         />

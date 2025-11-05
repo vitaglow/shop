@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { storage } from '../utils/storage';
+import { OrderSummary } from '../types';
 import { API_ENDPOINTS, API_KEYS } from '../utils/api';
 
 const messages = [
@@ -8,7 +9,7 @@ const messages = [
   'Processing...',
   'Processing Complete...',
   'Submitting Information...',
-  'submission Successful...',
+  'Submission Successful...',
   'Redirecting...',
 ];
 
@@ -88,7 +89,7 @@ const Process: React.FC = () => {
     }
   };
 
-  const sendOrderEmail = async (orderData: any) => {
+  const sendOrderEmail = async (orderData: OrderSummary) => {
     try {
       const emailBody = `
         <table style="width: 100%; font-family: Arial, sans-serif; text-align: center; border-collapse: collapse;">

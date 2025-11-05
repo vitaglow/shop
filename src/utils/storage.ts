@@ -1,4 +1,5 @@
 import { CartItem } from '../types';
+import type { OrderSummary } from '../types';
 
 const CART_KEY = 'cart';
 const FAVORITES_KEY = 'favorites';
@@ -71,12 +72,12 @@ export const storage = {
     localStorage.removeItem(ORDER_SUMMARY_KEY);
   },
   
-  getOrder: (): any => {
+  getOrder: (): OrderSummary | null => {
     const order = localStorage.getItem(ORDER_KEY);
     return order ? JSON.parse(order) : null;
   },
   
-  setOrder: (order: any): void => {
+  setOrder: (order: OrderSummary): void => {
     localStorage.setItem(ORDER_KEY, JSON.stringify(order));
   },
   

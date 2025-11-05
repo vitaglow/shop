@@ -1,4 +1,6 @@
 // Caesar cipher decoder for API endpoints
+// NOTE: This is obfuscation, not security. The API endpoints are public-facing
+// and intended for client-side use. Sensitive operations should use server-side authentication.
 const shiftAmount = 3;
 
 function dgi(encoded: string): string {

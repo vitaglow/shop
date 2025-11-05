@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import doneGif from '../assets/done.gif';
 
 const Done: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -27,7 +28,7 @@ const Done: React.FC = () => {
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
         {/* Success Icon */}
         <div className="mb-6">
-          <img src="/done.gif" alt="Success" className="w-32 h-32 mx-auto" />
+          <img src={doneGif} alt="Success" className="w-32 h-32 mx-auto" />
         </div>
 
         {/* Title */}
